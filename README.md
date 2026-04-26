@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
 ![Ecosystem](https://img.shields.io/badge/GeoFS-V3.9_Addon--Pack-64c8ff?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Stable-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Construction-orange?style=for-the-badge)
 
 The high-fidelity fuel burn and weight simulation framework for **GeoFS v3.9**. This system introduces aircraft-specific performance profiles, dynamic mass calculations based on fuel state, and real-time fuel exhaustion mechanics to enhance the simulation's realism.
 
