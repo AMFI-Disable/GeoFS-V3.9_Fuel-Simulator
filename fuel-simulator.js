@@ -1,6 +1,89 @@
 (function() {
     'use strict';
 
+    // Shared HUD Manager
+    function ensureSharedHUD() {
+        if (!document.getElementById('hudMinimizeBtn')) {
+            const btn = document.createElement('div');
+            btn.id = 'hudMinimizeBtn';
+            btn.innerHTML = '▣';
+            btn.title = 'Toggle Info Display';
+            btn.style.left = '0px'; 
+            btn.style.top = '50%'; 
+            btn.style.transform = 'translateY(-50%)';
+            btn.onclick = () => {
+                globalThis.hudProMinimized = !globalThis.hudProMinimized;
+                document.getElementById('flightDataDisplay')?.classList.toggle('hud-minimized', globalThis.hudProMinimized);
+                btn.innerHTML = globalThis.hudProMinimized ? '◈' : '▣';
+            };
+            document.body.appendChild(btn);
+            if (window.initAddonDraggable) window.initAddonDraggable(btn, 'geofs-addonpack-hud-icon-pos');
+        }
+
+        if (!document.getElementById('flightDataDisplay')) {
+            const panel = document.createElement('div');
+            panel.id = 'flightDataDisplay';
+            panel.innerHTML = `
+                <div id="masterCaution" style="display:none; grid-column: 1 / -1; background: #ef4444; color: #fff; text-align: center; font-weight: 900; padding: 4px; border-radius: 6px; margin-bottom: 8px; animation: cautionPulse 1s infinite; letter-spacing: 2px; font-size: 10px; border: 1px solid #fff;">MASTER CAUTION</div>
+                <div class="hud-drag-handle" style="font-size: 9px; letter-spacing: 2px; color: rgba(100,200,255,0.6);">GEOFS HUD PRO v3.9</div>
+                <div class="unified-tabs" id="hud-unified-tabs"></div>
+            `;
+            document.body.appendChild(panel);
+            if (window.initAddonDraggable) window.initAddonDraggable(panel, 'geofs-addonpack-hud-pos');
+        }
+
+        if (!window.switchHUDProTab) {
+            window.switchHUDProTab = function(activeTabId) {
+                globalThis.activeHudProTab = activeTabId;
+                document.querySelectorAll('#flightDataDisplay .unified-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('#flightDataDisplay .unified-content').forEach(c => c.classList.remove('active'));
+                
+                const tabBtn = document.getElementById(`tab-btn-${activeTabId}`);
+                const tabContent = document.getElementById(`tab-content-${activeTabId}`);
+                if (tabBtn) tabBtn.classList.add('active');
+                if (tabContent) tabContent.classList.add('active');
+                
+                globalThis.hudProMinimized = false;
+                document.getElementById('flightDataDisplay')?.classList.remove('hud-minimized');
+                const btn = document.getElementById('hudMinimizeBtn');
+                if (btn) btn.innerHTML = '▣';
+            };
+        }
+    }
+
+    function registerHUDTab(tabId, label, contentHTML, isGrid) {
+        ensureSharedHUD();
+        const tabsContainer = document.getElementById('hud-unified-tabs');
+        if (!document.getElementById(`tab-btn-${tabId}`)) {
+            const btn = document.createElement('button');
+            btn.id = `tab-btn-${tabId}`;
+            btn.className = 'unified-tab';
+            btn.textContent = label;
+            btn.onclick = () => window.switchHUDProTab(tabId);
+            tabsContainer.appendChild(btn);
+        }
+
+        const panel = document.getElementById('flightDataDisplay');
+        if (!document.getElementById(`tab-content-${tabId}`)) {
+            const content = document.createElement('div');
+            content.id = `tab-content-${tabId}`;
+            content.className = `unified-content ${isGrid ? 'unified-grid' : ''}`;
+            content.innerHTML = contentHTML;
+            panel.appendChild(content);
+        }
+
+        setTimeout(() => {
+            const firstTab = document.querySelector('#hud-unified-tabs .unified-tab');
+            if (firstTab && !document.querySelector('.unified-tab.active')) {
+                firstTab.click();
+            }
+        }, 100);
+    }
+
+    function hudCell(label, value, warnClass, idClass) { 
+        return `<div class="hud-cell"><span class="hud-label">${label}</span><span class="hud-value ${idClass || ''} ${warnClass || ''}">${value}</span></div>`; 
+    }
+
     const AIRCRAFT_PERFORMANCE = {
         "1":    { name: "Piper Cub", oew: 331, mtow: 553, fuel: 45 },
         "2":    { name: "Cessna 172", oew: 767, mtow: 1157, fuel: 176 },
@@ -29,7 +112,7 @@
         "pitts":  { name: "Pitts Special", oew: 327, mtow: 522, fuel: 75 },
         "ec135":  { name: "EC135", oew: 1455, mtow: 2980, fuel: 560 },
         "pa28":   { name: "PA-28 Warrior", oew: 677, mtow: 1055, fuel: 132 },
-        "f14a":    { name: "F-14A", oew: 19838, mtow: 33720, fuel: 7348 }
+        "f14a":   { name: "F-14A", oew: 19838, mtow: 33720, fuel: 7348 }
     };
 
     window.fuelState = {
@@ -50,6 +133,14 @@
         const acName = ac.definition.externalName?.toLowerCase() || ac.definition.name?.toLowerCase() || "";
         
         console.log("[GeoFS-V3.9_Fuel-Simulator] Initializing system for aircraft:", acName);
+
+        // Register FUEL Tab in Shared HUD
+        const fuelHTML = `
+            <div class="hud-section-header full-width">Tank Status</div>
+            ${hudCell('FUEL %', 'N/A', '', 'hud-fuel')}
+            ${hudCell('TOTAL MASS', 'N/A', '', 'hud-mass')}
+        `;
+        registerHUDTab('fuel', 'FUEL', fuelHTML, true);
 
         let data = AIRCRAFT_PERFORMANCE[acId];
         if (!data) {
@@ -119,6 +210,13 @@
 
         globalThis.fuelPercentage = (window.fuelState.fuel / window.fuelState.initialFuel) * 100;
         updateAircraftMass();
+
+        // Update UI
+        const fuelEl = document.querySelector('.hud-fuel');
+        const massEl = document.querySelector('.hud-mass');
+        if (fuelEl) fuelEl.textContent = globalThis.fuelPercentage.toFixed(1) + "%";
+        if (massEl) massEl.textContent = Math.round(ac.definition.mass).toLocaleString() + " kg";
+
     }, 1000);
 
     // Watch for Aircraft Changes
