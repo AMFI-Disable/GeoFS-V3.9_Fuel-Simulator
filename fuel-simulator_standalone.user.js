@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         GeoFS-V3.9_Fuel-Simulator
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
-// @description  High-fidelity fuel burn and weight simulation for GeoFS.
+// @version      1.0.1
+// @description  Comprehensive fuel management and weight simulation for GeoFS.
 // @author       AwesomeOddEven-NightKeys-LunarBlink
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://*.geo-fs.com/geofs.php*
@@ -13,7 +13,7 @@
 
 (function() {
     'use strict';
-    const fuelUrl = 'https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Fuel-Simulator/main/src/fuel-simulator.js';
+    const fuelUrl = 'https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Fuel-Simulator/main/fuel-simulator.js';
 
     function loadFuelSimulatorPro() {
         if (window.fuelState && window.fuelState.initialized) return;
@@ -27,7 +27,7 @@
     const checker = setInterval(() => {
         if (window.SafeInit && document.getElementById('geofs-addon-design-system')) {
             clearInterval(checker);
-            console.log('[GeoFS-V3.9_Fuel-Simulator] Foundations detected. Booting Pro Fuel System...');
+            console.log('[GeoFS-V3.9_Fuel-Simulator] Foundations detected. Booting Pro Fuel Systems...');
             loadFuelSimulatorPro();
         }
     }, 500);
