@@ -3,6 +3,9 @@
 
     // Shared HUD Manager
     function ensureSharedHUD() {
+        if (!globalThis.hudProVisible) globalThis.hudProVisible = true;
+        if (globalThis.hudProMinimized === undefined) globalThis.hudProMinimized = false;
+
         if (!document.getElementById('hudMinimizeBtn')) {
             const btn = document.createElement('div');
             btn.id = 'hudMinimizeBtn';
@@ -26,7 +29,7 @@
             panel.innerHTML = `
                 <div id="masterCaution" style="display:none; grid-column: 1 / -1; background: #ef4444; color: #fff; text-align: center; font-weight: 900; padding: 4px; border-radius: 6px; margin-bottom: 8px; animation: cautionPulse 1s infinite; letter-spacing: 2px; font-size: 10px; border: 1px solid #fff;">MASTER CAUTION</div>
                 <div class="hud-drag-handle" style="font-size: 9px; letter-spacing: 2px; color: rgba(100,200,255,0.6);">GEOFS HUD PRO v3.9</div>
-                <div class="unified-tabs" id="hud-unified-tabs"></div>
+                <div class="unified-tabs" id="hud-unified-tabs" style="display: flex; width: 100%;"></div>
             `;
             document.body.appendChild(panel);
             if (window.initAddonDraggable) window.initAddonDraggable(panel, 'geofs-addonpack-hud-pos');
@@ -49,6 +52,27 @@
                 if (btn) btn.innerHTML = '▣';
             };
         }
+
+        // Visibility Controller
+        if (!window._hudVisibilityLoop) {
+            window._hudVisibilityLoop = setInterval(() => {
+                const btn = document.getElementById('hudMinimizeBtn');
+                const panel = document.getElementById('flightDataDisplay');
+                if (!btn || !panel) return;
+
+                const isVisible = globalThis.hudProVisible !== false;
+                const isMinimized = globalThis.hudProMinimized === true;
+                const isPaused = typeof geofs !== 'undefined' && geofs.isPaused && geofs.isPaused();
+
+                btn.style.display = isVisible ? 'flex' : 'none';
+                
+                if (!isVisible || isMinimized || isPaused) {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'grid';
+                }
+            }, 100);
+        }
     }
 
     function registerHUDTab(tabId, label, contentHTML, isGrid) {
@@ -59,6 +83,14 @@
             btn.id = `tab-btn-${tabId}`;
             btn.className = 'unified-tab';
             btn.textContent = label;
+            
+            // Tab ordering and sizing
+            const tabOrder = { 'id': 1, 'fuel': 2, 'checks': 3, 'realism': 4 };
+            btn.style.order = tabOrder[tabId] || 99;
+            btn.style.flex = '1';
+            btn.style.padding = '5px 2px';
+            btn.style.fontSize = '10px';
+
             btn.onclick = () => window.switchHUDProTab(tabId);
             tabsContainer.appendChild(btn);
         }
@@ -73,11 +105,13 @@
         }
 
         setTimeout(() => {
-            const firstTab = document.querySelector('#hud-unified-tabs .unified-tab');
+            const tabs = Array.from(document.querySelectorAll('#hud-unified-tabs .unified-tab'));
+            tabs.sort((a, b) => parseInt(a.style.order) - parseInt(b.style.order));
+            const firstTab = tabs[0];
             if (firstTab && !document.querySelector('.unified-tab.active')) {
-                firstTab.click();
+                window.switchHUDProTab(firstTab.id.replace('tab-btn-', ''));
             }
-        }, 100);
+        }, 200);
     }
 
     function hudCell(label, value, warnClass, idClass) { 
@@ -106,8 +140,6 @@
         "2951": { name: "Il-96", oew: 120000, mtow: 250000, fuel: 116000 },
         "2973": { name: "Airbus A350", oew: 155700, mtow: 316000, fuel: 110600 },
         "3534": { name: "Airbus A320", oew: 42600, mtow: 78000, fuel: 19000 },
-
-        // Fallback normalized keys
         "dhc6":   { name: "Twin Otter", oew: 3365, mtow: 5670, fuel: 1021 },
         "pitts":  { name: "Pitts Special", oew: 327, mtow: 522, fuel: 75 },
         "ec135":  { name: "EC135", oew: 1455, mtow: 2980, fuel: 560 },
@@ -115,15 +147,11 @@
         "f14a":   { name: "F-14A", oew: 19838, mtow: 33720, fuel: 7348 }
     };
 
-    window.fuelState = {
-        fuel: 0, initialFuel: 0, emptyMass: 0, payload: 0, maxPayload: 0,
-        autoRefuel: false, initialized: false
-    };
+    window.fuelState = { fuel: 0, initialFuel: 0, emptyMass: 0, payload: 0, maxPayload: 0, autoRefuel: false, initialized: false };
 
     function updateAircraftMass() {
         if (!geofs.aircraft.instance || !window.fuelState.initialized) return;
-        const ac = geofs.aircraft.instance;
-        ac.definition.mass = window.fuelState.emptyMass + window.fuelState.payload + window.fuelState.fuel;
+        geofs.aircraft.instance.definition.mass = window.fuelState.emptyMass + window.fuelState.payload + window.fuelState.fuel;
     }
 
     window.initFuelSimulatorPro = function() {
@@ -132,9 +160,6 @@
         const acId = ac.id.toString();
         const acName = ac.definition.externalName?.toLowerCase() || ac.definition.name?.toLowerCase() || "";
         
-        console.log("[GeoFS-V3.9_Fuel-Simulator] Initializing system for aircraft:", acName);
-
-        // Register FUEL Tab in Shared HUD
         const fuelHTML = `
             <div class="hud-section-header full-width">Tank Status</div>
             ${hudCell('FUEL %', 'N/A', '', 'hud-fuel')}
@@ -145,20 +170,14 @@
         let data = AIRCRAFT_PERFORMANCE[acId];
         if (!data) {
             const key = Object.keys(AIRCRAFT_PERFORMANCE).find(k => isNaN(k) && (acName.includes(k)));
-            if (key) {
-                data = AIRCRAFT_PERFORMANCE[key];
-                console.log("[GeoFS-V3.9_Fuel-Simulator] Performance match found via keyword:", key);
-            }
+            if (key) data = AIRCRAFT_PERFORMANCE[key];
         }
 
         if (data) {
             window.fuelState.emptyMass = data.oew;
             window.fuelState.initialFuel = data.fuel;
-            window.fuelState.maxPayload = data.mtow - data.oew - data.fuel;
-            if (window.fuelState.maxPayload < 0) window.fuelState.maxPayload = data.mtow * 0.1;
-            console.log("[GeoFS-V3.9_Fuel-Simulator] High-fidelity data loaded.");
+            window.fuelState.maxPayload = Math.max(data.mtow * 0.1, data.mtow - data.oew - data.fuel);
         } else {
-            console.log("[GeoFS-V3.9_Fuel-Simulator] No profile found. Using generic estimation logic.");
             window.fuelState.emptyMass = ac.definition.mass * 0.7;
             window.fuelState.maxPayload = ac.definition.mass * 0.3;
             window.fuelState.initialFuel = ac.definition.mass * (ac.definition.mass < 15000 ? 0.2 : 0.4);
@@ -168,68 +187,32 @@
         window.fuelState.fuel = window.fuelState.initialFuel;
         window.fuelState.initialized = true;
         updateAircraftMass();
-        console.log("[GeoFS-V3.9_Fuel-Simulator] Logic active. Fuel at 100%.");
     };
 
-    window.setFuelLevel = (pct) => {
-        window.fuelState.fuel = (pct / 100) * window.fuelState.initialFuel;
-        updateAircraftMass();
-        console.log(`[GeoFS-V3.9_Fuel-Simulator] Manual fuel set: ${pct}%`);
-    };
-
-    window.setPayloadLevel = (pct) => {
-        window.fuelState.payload = (pct / 100) * window.fuelState.maxPayload;
-        updateAircraftMass();
-        console.log(`[GeoFS-V3.9_Fuel-Simulator] Manual payload set: ${pct}%`);
-    };
-
-    window.toggleAutoRefuel = () => {
-        window.fuelState.autoRefuel = !window.fuelState.autoRefuel;
-        console.log("[GeoFS-V3.9_Fuel-Simulator] Auto-refuel toggled:", window.fuelState.autoRefuel);
-        return window.fuelState.autoRefuel;
-    };
-
-    // Main Simulation Loop
     setInterval(() => {
-        if (!geofs.aircraft.instance || geofs.isPaused() || (window.flight?.recorder?.playing) || !window.fuelState.initialized) return;
+        if (!geofs.aircraft.instance || geofs.isPaused() || !window.fuelState.initialized) return;
         const ac = geofs.aircraft.instance;
         let thrust = ac.engines ? ac.engines.reduce((e, t) => e + (t.thrust || 0), 0) : 0;
-        let burnRate = (thrust / 180) + (globalThis.leakingFuel ? 5 : 0);
-        window.fuelState.fuel -= burnRate * (1 / 3600);
+        window.fuelState.fuel -= ((thrust / 180) + (globalThis.leakingFuel ? 5 : 0)) * (1 / 3600);
 
-        if (window.fuelState.fuel <= 0) {
-            window.fuelState.fuel = 0;
-            console.warn("[GeoFS-V3.9_Fuel-Simulator] FUEL EXHAUSTED. FLAMEOUT INITIATED.");
-            ac.stopEngine();
-        }
-
-        if (window.fuelState.autoRefuel && (window.fuelState.fuel / window.fuelState.initialFuel < 0.1)) {
-            console.log("[GeoFS-V3.9_Fuel-Simulator] Critical level detected. Auto-refueling...");
-            window.setFuelLevel(100);
-        }
+        if (window.fuelState.fuel <= 0) { window.fuelState.fuel = 0; ac.stopEngine(); }
+        if (window.fuelState.autoRefuel && (window.fuelState.fuel / window.fuelState.initialFuel < 0.1)) window.fuelState.fuel = window.fuelState.initialFuel;
 
         globalThis.fuelPercentage = (window.fuelState.fuel / window.fuelState.initialFuel) * 100;
         updateAircraftMass();
 
-        // Update UI
         const fuelEl = document.querySelector('.hud-fuel');
         const massEl = document.querySelector('.hud-mass');
         if (fuelEl) fuelEl.textContent = globalThis.fuelPercentage.toFixed(1) + "%";
         if (massEl) massEl.textContent = Math.round(ac.definition.mass).toLocaleString() + " kg";
-
     }, 1000);
 
-    // Watch for Aircraft Changes
     setInterval(() => {
         if (geofs.aircraft.instance && (!window.fuelState.initialized || geofs.aircraft.instance.id !== window._fCurrId)) {
-            window._fCurrId = geofs.aircraft.instance.id;
-            window.initFuelSimulatorPro();
+            window._fCurrId = geofs.aircraft.instance.id; window.initFuelSimulatorPro();
         }
     }, 2000);
 
-    if (window.SafeInit) {
-        window.SafeInit('GeoFS-V3.9_Fuel-Simulator', window.initFuelSimulatorPro);
-    } else {
-        window.initFuelSimulatorPro();
-    }
+    if (window.SafeInit) window.SafeInit('GeoFS-V3.9_Fuel-Simulator', window.initFuelSimulatorPro);
+    else window.initFuelSimulatorPro();
 })();
