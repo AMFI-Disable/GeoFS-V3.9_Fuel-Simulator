@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GeoFS-V3.9_Fuel-Simulator
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.0-Alpha
 // @description  Comprehensive fuel management and weight simulation for GeoFS.
 // @author       AwesomeOddEven-NightKeys-LunarBlink
 // @match        https://www.geo-fs.com/geofs.php*
