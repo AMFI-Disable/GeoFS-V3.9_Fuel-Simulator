@@ -43,8 +43,8 @@
         const acId = ac.id.toString();
         const acName = ac.definition.externalName?.toLowerCase() || ac.definition.name?.toLowerCase() || "";
         
-        if (!window.registerHUDTab || !window.hudCell) {
-            console.error("[GeoFS-V3.9_Fuel-Simulator] Core Library HUD helpers not found!");
+        if (typeof window.registerHUDTab !== 'function' || typeof window.hudCell !== 'function') {
+            console.error("[GeoFS-V3.9_Fuel-Simulator] FATAL: HUD helpers not found on window! Core Library might be outdated.");
             return;
         }
 
