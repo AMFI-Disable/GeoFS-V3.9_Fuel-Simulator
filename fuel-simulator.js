@@ -37,6 +37,26 @@
         geofs.aircraft.instance.definition.mass = window.fuelState.emptyMass + window.fuelState.payload + window.fuelState.fuel;
     }
 
+    window.setFuelLevelPro = function(pct) {
+        window.fuelState.fuel = (pct / 100) * window.fuelState.initialFuel;
+        updateAircraftMass();
+    };
+
+    window.setPayloadLevelPro = function(pct) {
+        window.fuelState.payload = (pct / 100) * window.fuelState.maxPayload;
+        updateAircraftMass();
+    };
+
+    window.toggleAutoRefuelPro = function() {
+        window.fuelState.autoRefuel = !window.fuelState.autoRefuel;
+        const btn = document.getElementById('btn-auto-refuel-pro');
+        if (btn) {
+            btn.textContent = window.fuelState.autoRefuel ? 'Auto-Refuel: ACTIVE' : 'Auto-Refuel: OFF';
+            btn.style.background = window.fuelState.autoRefuel ? 'rgba(100,200,255,0.25)' : 'rgba(100,200,255,0.08)';
+            btn.style.borderColor = window.fuelState.autoRefuel ? '#64c8ff' : 'rgba(100,200,255,0.15)';
+        }
+    };
+
     window.initFuelSimulatorPro = function() {
         if (!geofs.aircraft.instance) return;
         const ac = geofs.aircraft.instance;
@@ -50,10 +70,36 @@
 
         const fuelHTML = `
             <div class="hud-section-header full-width">Tank Status</div>
-            ${window.hudCell('FUEL %', 'N/A', '', 'hud-fuel')}
+            <div class="hud-cell full-width" style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span class="hud-label">FUEL</span>
+                    <span class="hud-value hud-fuel-pct" style="font-size: 11px;">N/A</span>
+                </div>
+                <input type="range" class="hud-fuel-slider-pro" min="0" max="100" step="1" style="width: 100%; margin: 4px 0; -webkit-appearance: none; background: rgba(100,200,255,0.1); height: 4px; border-radius: 2px; outline: none; cursor: pointer;">
+            </div>
+            <div class="hud-cell full-width" style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span class="hud-label">PAYLOAD</span>
+                    <span class="hud-value hud-payload-pct" style="font-size: 11px;">50%</span>
+                </div>
+                <input type="range" class="hud-payload-slider-pro" min="0" max="100" step="1" style="width: 100%; margin: 4px 0; -webkit-appearance: none; background: rgba(100,200,255,0.1); height: 4px; border-radius: 2px; outline: none; cursor: pointer;">
+            </div>
             ${window.hudCell('TOTAL MASS', 'N/A', '', 'hud-mass')}
+            <div style="grid-column: 1 / -1; display: flex; gap: 4px; margin-top: 8px;">
+                <button onclick="window.setFuelLevelPro(100)" class="addonpack-btn success" style="flex: 1; padding: 4px 0; font-size: 9px;">Full Refuel</button>
+                <button id="btn-auto-refuel-pro" onclick="window.toggleAutoRefuelPro()" class="addonpack-btn" style="flex: 1; padding: 4px 0; font-size: 9px;">Auto-Refuel: OFF</button>
+            </div>
         `;
         window.registerHUDTab('fuel', 'FUEL', fuelHTML, true);
+
+        // Slider listeners
+        const panel = document.getElementById('tab-content-fuel');
+        if (panel) {
+            const fSl = panel.querySelector('.hud-fuel-slider-pro');
+            const pSl = panel.querySelector('.hud-payload-slider-pro');
+            if (fSl) fSl.addEventListener('input', (e) => window.setFuelLevelPro(e.target.value));
+            if (pSl) pSl.addEventListener('input', (e) => window.setPayloadLevelPro(e.target.value));
+        }
 
         let data = AIRCRAFT_PERFORMANCE[acId];
         if (!data) {
@@ -89,10 +135,17 @@
         globalThis.fuelPercentage = (window.fuelState.fuel / window.fuelState.initialFuel) * 100;
         updateAircraftMass();
 
-        const fuelEl = document.querySelector('.hud-fuel');
+        const fuelPctEl = document.querySelector('.hud-fuel-pct');
+        const payloadPctEl = document.querySelector('.hud-payload-pct');
         const massEl = document.querySelector('.hud-mass');
-        if (fuelEl) fuelEl.textContent = globalThis.fuelPercentage.toFixed(1) + "%";
+        const fSl = document.querySelector('.hud-fuel-slider-pro');
+        const pSl = document.querySelector('.hud-payload-slider-pro');
+
+        if (fuelPctEl) fuelPctEl.textContent = globalThis.fuelPercentage.toFixed(1) + "%";
+        if (payloadPctEl) payloadPctEl.textContent = (window.fuelState.payload / window.fuelState.maxPayload * 100).toFixed(0) + "%";
         if (massEl) massEl.textContent = Math.round(ac.definition.mass).toLocaleString() + " kg";
+        if (fSl && document.activeElement !== fSl) fSl.value = globalThis.fuelPercentage.toFixed(0);
+        if (pSl && document.activeElement !== pSl) pSl.value = (window.fuelState.payload / window.fuelState.maxPayload * 100).toFixed(0);
     }, 1000);
 
     setInterval(() => {
