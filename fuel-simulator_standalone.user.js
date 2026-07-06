@@ -123,6 +123,8 @@
 // @match               https://www.geo-fs.com/geofs.php*
 // @grant               none
 // @license             MIT
+// @downloadURL https://update.greasyfork.org/scripts/581517/GeoFS-V39_Fuel-Simulator.user.js
+// @updateURL https://update.greasyfork.org/scripts/581517/GeoFS-V39_Fuel-Simulator.meta.js
 // ==/UserScript==
 
 (function() {
