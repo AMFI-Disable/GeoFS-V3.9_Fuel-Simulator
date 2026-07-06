@@ -1,36 +1,26 @@
 # GeoFS-V3.9_Fuel-Simulator
 
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
-![Ecosystem](https://img.shields.io/badge/GeoFS-V3.9_Addon--Pack-64c8ff?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-In%20Construction-orange?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v2.0.0-3b82f6?style=flat-square&logo=git&logoColor=white)
+![Ecosystem](https://img.shields.io/badge/GeoFS--V3.9-Fuel_Simulator-10b981?style=flat-square&logo=shell&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Stable-10b981?style=flat-square&logo=lighthouse&logoColor=white)
 
-The high-fidelity fuel burn and weight simulation framework for **GeoFS v3.9**. This system introduces aircraft-specific performance profiles, dynamic mass calculations based on fuel state, and real-time fuel exhaustion mechanics to enhance the simulation's realism.
+The high-fidelity fuel management and consumption framework for **GeoFS-V3.9**. This module introduces realistic fuel-weight physics, consumption curves, and cross-feed logic for long-haul operations.
 
 ## ✨ Features
 
-- **⛽ Precision Fuel Burn**: Real-time fuel consumption logic based on engine thrust settings and aircraft-specific performance data.
-- **⚖️ Dynamic Mass Simulation**: Automatically updates aircraft mass as fuel is consumed, directly affecting flight handling and stall speeds.
-- **🔍 High-Fidelity Profiles**: Built-in performance data for major aircraft (737, A320, A380, F-16, etc.) with a generic fallback system for unknown airframes.
-- **🧩 HUD Pro Integration**: Plugs directly into the **[FUEL]** tab of the [HUD Information Display Pro](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_HUD-Information-Display-Pro) for real-time monitoring and refuel control.
-- **🚀 Advanced Boot Logging**: Detailed, branded console logs track performance data matching and critical fuel thresholds.
+- **⛽ Realistic Consumption**: Fuel burn rate is calculated based on throttle position, engine type, and altitude (Dynamic SFC).
+- **⚖️ Center of Gravity Physics**: Fuel weight dynamically affects aircraft mass and can cause roll imbalances in Multi-Tank mode.
+- **🛢️ Multi-Tank Simulation**: Realistic sequential fuel draining (Center -> Wings) for complex flight management.
+- **⚖️ Gross Weight Display**: Live monitoring of total aircraft weight in KG directly on the HUD.
+- **🛠️ Ground Operations**: Integrated refueling system for pre-flight and turn-around procedures.
+- **🚀 CDN Loader Architecture**: Instant updates via a lightweight loader pattern, ensuring you always have the latest fuel physics.
 
 ## 🛠️ Installation
 
 ### Standalone (Tampermonkey)
+
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension.
-2. Click **Create a new script**.
-3. Paste the contents of `fuel-simulator_standalone.user.js` from this repository.
-4. Save and launch GeoFS.
+2. Install the script via [**Greasy Fork**](https://greasyfork.org/en/scripts/581517-geofs-v3-9-fuel-simulator).
+3. Refresh GeoFS and look for the **FUEL** options in the HUD interface.
 
-## 🔗 Ecosystem Dependencies
-This module is part of the **GeoFS-V3.9 Addon-Pack** ecosystem and requires:
-- [GeoFS-V3.9_Core-Library](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Core-Library)
-- [GeoFS-V3.9_Design-System](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Design-System)
-
-## 🤝 Credits
-- **AwesomeOddEven** (Fuel Logic & Performance Architecture)
-- **NightKeys** (Aeronautical Data Research & QA)
-- **LunarBlink** (Ecosystem Synthesis & Documentation)
-
----
-*© 2026 AwesomeOddEven-NightKeys-LunarBlink. Part of the GeoFS-V3.9 Pro Suite.*
+*© 2026 _init. Part of the [GeoFS-V3.9_Ecosystem](https://sites.google.com/view/geofs-v39-ecosystem/home).*
