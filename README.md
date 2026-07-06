@@ -13,7 +13,6 @@ The high-fidelity fuel management and consumption framework for **GeoFS-V3.9**. 
 - **🛢️ Multi-Tank Simulation**: Realistic sequential fuel draining (Center -> Wings) for complex flight management.
 - **⚖️ Gross Weight Display**: Live monitoring of total aircraft weight in KG directly on the HUD.
 - **🛠️ Ground Operations**: Integrated refueling system for pre-flight and turn-around procedures.
-- **🚀 CDN Loader Architecture**: Instant updates via a lightweight loader pattern, ensuring you always have the latest fuel physics.
 
 ## 🛠️ Installation
 
@@ -21,6 +20,6 @@ The high-fidelity fuel management and consumption framework for **GeoFS-V3.9**. 
 
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension.
 2. Install the script via [**Greasy Fork**](https://greasyfork.org/en/scripts/581517-geofs-v3-9-fuel-simulator).
-3. Refresh GeoFS and look for the **FUEL** options in the HUD interface.
+3. Refresh GeoFS and the module will automatically initialize alongside the HUD.
 
 *© 2026 _init. Part of the [GeoFS-V3.9_Ecosystem](https://sites.google.com/view/geofs-v39-ecosystem/home).*
