@@ -117,7 +117,7 @@
 // @copyright           2026, _init (https://greasyfork.org/users/1594049)
 
 // @namespace           https://greasyfork.org/users/1594049
-// @version             2.0.0
+// @version             2.0.1
 // @author              _init
 // @icon                https://geofs-assets.evengao6688.workers.dev/icons/fuel-simulator.png
 // @match               https://www.geo-fs.com/geofs.php*
@@ -127,8 +127,8 @@
 // @updateURL https://update.greasyfork.org/scripts/581517/GeoFS-V39_Fuel-Simulator.meta.js
 // ==/UserScript==
 
-(function() {
-    'use strict';
+(() => {
+    
 
     console.log("[GeoFS-V3.9_Fuel-Simulator] >> Initializing simulation logic...");
 
@@ -214,7 +214,7 @@
          * @param {string} text - The text content of the notification.
          * @param {string} [type="success"] - The status level of the notification.
          */
-        notify: function(text, type = "success") {
+        notify: (text, type = "success") => {
             if (window.V39_NOTIF) {
                 window.V39_NOTIF.show(text, type);
             } else {
@@ -438,7 +438,7 @@
             const sfcBase = isRocket ? 0.85 : ((ac.definition.maxThrust || 0) > 50000 ? 0.0075 : 0.0095);
             
             // Atmospheric Scaling: SFC decreases in thinner air
-            const altMult = this.state.dynamicSFC ? Math.pow(Math.max(0.1, 1 - (alt / 50000)), 1.1) : 1;
+            const altMult = this.state.dynamicSFC ? Math.max(0.1, 1 - (alt / 50000)) ** 1.1 : 1;
             const totalThrust = ac.engines ? ac.engines.reduce((sum, eng) => sum + Math.max(0, eng.thrust || 0), 0) : 0;
             const burnRate = totalThrust * sfcBase * altMult;
 
@@ -533,7 +533,7 @@
 
     window.fuelSimulatorSuite = fuelSimulatorSuite;
 
-    window.initFuelSimulatorPro = function() {
+    window.initFuelSimulatorPro = () => {
         if (window.fuelSimulatorTabRegistered) return;
         if (typeof window.registerHUDTab !== 'function') return;
         window.fuelSimulatorTabRegistered = true;
