@@ -143,10 +143,10 @@
             emptyMass: 0,
             payload: 0,
             maxPayload: 0,
-            autoRefuel: localStorage.getItem('geofs-v39-fuel-auto') === 'true',
+            autoRefuel: localStorage.getItem('geofs-V39-fuel-auto') === 'true',
             immersiveRefuel: true,
-            dynamicSFC: localStorage.getItem('geofs-v39-fuel-dyn') === 'true',
-            realisticTanks: localStorage.getItem('geofs-v39-fuel-tanks') === 'true',
+            dynamicSFC: localStorage.getItem('geofs-V39-fuel-dyn') === 'true',
+            realisticTanks: localStorage.getItem('geofs-V39-fuel-tanks') === 'true',
             tanks: { left: 0, center: 0, right: 0 },
             initialized: false,
             _alertLow: false,
@@ -376,7 +376,7 @@
          */
         toggleDynamicSFC: function() {
             this.state.dynamicSFC = !this.state.dynamicSFC;
-            localStorage.setItem('geofs-v39-fuel-dyn', this.state.dynamicSFC);
+            localStorage.setItem('geofs-V39-fuel-dyn', this.state.dynamicSFC);
             const btn = document.getElementById('fuel-btn-dyn');
             if (btn) btn.style.background = this.state.dynamicSFC ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)";
             this.notify(`Dynamic SFC ${this.state.dynamicSFC ? 'ON' : 'OFF'}`);
@@ -387,7 +387,7 @@
          */
         toggleRealisticTanks: function() {
             this.state.realisticTanks = !this.state.realisticTanks;
-            localStorage.setItem('geofs-v39-fuel-tanks', this.state.realisticTanks);
+            localStorage.setItem('geofs-V39-fuel-tanks', this.state.realisticTanks);
             const btn = document.getElementById('fuel-btn-tanks');
             if (btn) btn.style.background = this.state.realisticTanks ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)";
             this.notify(`Realistic Tanks ${this.state.realisticTanks ? 'ON' : 'OFF'}`);
@@ -398,7 +398,7 @@
          */
         toggleAutoRefuel: function() {
             this.state.autoRefuel = !this.state.autoRefuel;
-            localStorage.setItem('geofs-v39-fuel-auto', this.state.autoRefuel);
+            localStorage.setItem('geofs-V39-fuel-auto', this.state.autoRefuel);
             const btn = document.getElementById('fuel-btn-auto');
             if (btn) btn.style.background = this.state.autoRefuel ? "rgba(255,159,5,0.15)" : "rgba(255,255,255,0.05)";
             this.notify(`Auto-Refuel ${this.state.autoRefuel ? 'ON' : 'OFF'}`);
