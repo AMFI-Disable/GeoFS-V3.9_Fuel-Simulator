@@ -51,57 +51,57 @@
 // @name:lo             GeoFS-V3.9_ເຄື່ອງຈຳລອງນໍ້າມັນເຊື້ອໄຟ
 // @name:ur             GeoFS-V3.9_ایندھن-سمیلیٹر
 
-// @description         Interactive fuel management, auto-refuel logic, and dynamic weight simulation. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:vi      Quản lý nhiên liệu tương tác, logic tự động tiếp nhiên liệu và mô phỏng trọng lượng động. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:zh-CN   交互式燃油管理、自动加油逻辑和动态重量模拟。 © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:zh-TW   互動式燃油管理、自動加油邏輯和動態重量模擬。 © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ja      インタラクティブな燃料管理、自動給油ロジック、および動的重量シミュレーション。 © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ko      대화형 연료 관리, 자동 연료 보급 논리 및 동적 중량 시뮬레이션. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:fr      Gestion interactive du carburant, logique de ravitaillement automatique et simulation dynamique du poids. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:de      Interaktives Kraftstoffmanagement, automatische Betankungslogik und dynamische Gewichtssimulation. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:es      Gestión interactiva de combustible, lógica de repostaje automático y simulación dinámica de peso. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:pt-BR   Gerenciamento interativo de combustível, lógica de reabastecimento automático e simulação dinâmica de peso. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:pt-PT   Gestão interativa de combustível, lógica de reabastecimento automático e simulação dinâmica de peso. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ru      Интерактивное управление топливом, логика автоматической дозаправки и динамическое моделирование веса. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ar      إدارة الوقود التفاعلية، ومنطق التزود بالوقود التلقائي، ومحاكاة الوزن الديناميكي. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:tr      Etkileşimli yakıt yönetimi, otomatik yakıt ikmali mantığı ve dinamik ağırlık simülasyonu. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:id      Manajemen bahan bakar interaktif, logika pengisian bahan bakar otomatis, dan simulasi bobot dinamis. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:th      การจัดการเชื้อเพลิงแบบโต้ตอบ ตรรกะการเติมเชื้อเพลิงอัตโนมัติ และการจำลองน้ำหนักแบบไดนามิก © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:pl      Interaktywne zarządzanie paliwem, logika automatycznego tankowania i dynamiczna symulacja masy. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:nl      Interactief brandstofbeheer, logica voor automatisch tanken en dynamische gewichtssimulatie. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:it      Gestione interattiva del carburante, logica di rifornimento automatico e simulazione dinamica del peso. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:sv      Interaktiv bränslehantering, logik för automatisk tankning och dynamisk viktsimulering. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:da      Interaktiv brændstofstyring, auto-tank logik og dynamisk vægtsimulering. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:fi      Interaktiivinen polttoaineen hallinta, automaattinen tankkauslogiikka ja dynaaminen painosimulaatio. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:nb      Interaktiv drivstoffstyring, logikk for automatisk drivstoff og dynamisk vektsimulering. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:cs      Interaktivní řízení paliva, logika automatického doplňování paliva a dynamická simulace hmotnosti. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:hu      Interaktív üzemanyag-kezelés, automatikus tankolási logika és dinamikus tömegszimuláció. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ro      Gestionarea interactivă a combustibilului, logica de alimentare automată și simularea dinamică a greutății. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:uk      Інтерактивне керування паливом, логіка автоматичної заправки та моделювання динамічної ваги. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:hi      इंटरएक्टिव ईंधन प्रबंधन, ऑटो-ईंधन तर्क और गतिशील वजन सिमुलेशन। © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:bn      ইন্টারেক্টিভ ফুয়েল ম্যানেজমেন্ট, অটো-রিফুয়েল লজিক এবং ডাইনামিক ওয়েট সিমুলেশন। © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:fa      مدیریت تعاملی سوخت، منطق سوخت‌گیری خودکار و شبیه‌سازی وزن پویا. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:he      ניהול דלק אינטראקטיבי, לוגיקה של תדלוק אוטומטי והדמיית משקל דינמית. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ms      Pengurusan bahan api interaktif, logik pengisi automatik dan simulasi berat dinamik. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:fil     Interactive na pamamahala ng gasolina, auto-refuel logic, at dynamic na weight simulation. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:el      Διαδραστική διαχείριση καυσίμου, λογική αυτόματης ανεφοδιασμού καυσίμου και δυναμική προσομοίωση βάρους. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:hr      Interaktivno upravljanje gorivom, logika automatskog punjenja goriva i dinamička simulacija težine. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:sk      Interaktívny manažment paliva, logika automatického dopĺňania paliva a dynamická simulácia hmotnosti. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:bg      Интерактивно управление на горивото, логика за автоматично зареждане с гориво и симулация на динамично тегло. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:sr      Интерактивно управљање горивом, логика аутоматског допуњавања горива и динамичка симулација тежине. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:lt      Interaktyvus degalų valdymas, automatinio degalų papildymo logika ir dinaminis svorio modeliavimas. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:lv      Interaktīva degvielas pārvaldība, automātiskās degvielas uzpildes loģika un dinamiska svara simulācija. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:et      Interaktiivne kütusehaldus, automaatse tankimise loogika ja dünaamiline kaalusimulatsioon. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:sl      Interaktivno upravljanje goriva, logika samodejnega točenja goriva in dinamična simulacija teže. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ca      Gestió interactiva del combustible, lògica de reabastament automàtic i simulació de pes dinàmica. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:af      Interaktiewe brandstofbestuur, outo-brandstof-logika en dinamiese gewigsimulasie. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:sw      Usimamizi shirikishi wa mafuta, mantiki ya kujaza mafuta kiotomatiki, na uigaji wa uzito unaobadilika. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:zu      Ukuphathwa kukaphethiloli okusebenzisanayo, i-auto-refuel logic, nokulingisa isisindo esiguqukayo. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:mn      Шатахууны интерактив удирдлага, автоматаар цэнэглэх логик, жингийн динамик загварчлал. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:my      အပြန်အလှန်အကျိုးပြုသောလောင်စာဆီစီမံခန့်ခွဲမှု၊ အလိုအလျောက်ဆီဖြည့်ခြင်းဆိုင်ရာ ယုတ္တိဗေဒနှင့် တက်ကြွသောအလေးချိန်တူခြင်း © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:km      ការគ្រប់គ្រងឥន្ធនៈអន្តរកម្ម តក្កវិជ្ជាចាក់ប្រេងដោយស្វ័យប្រវត្តិ និងការក្លែងធ្វើទម្ងន់ថាមវន្ត។ © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:lo      ການຈັດການນໍ້າມັນເຊື້ອໄຟແບບໂຕ້ຕອບ, ເຫດຜົນການເຕີມນໍ້າມັນອັດຕະໂນມັດ, ແລະການຈໍາລອງນ້ໍາຫນັກແບບເຄື່ອນໄຫວ. © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
-// @description:ur      انٹرایکٹو فیول مینجمنٹ، آٹو ریفیول لاجک، اور ڈائنامک ویٹ سمولیشن۔ © 2026 _init. Part of the GeoFS-V3.9_Ecosystem.
+// @description         Interactive fuel management, auto-refuel logic, and dynamic weight simulation. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:vi      Quản lý nhiên liệu tương tác, logic tự động tiếp nhiên liệu và mô phỏng trọng lượng động. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:zh-CN   交互式燃油管理、自动加油逻辑和动态重量模拟。 © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:zh-TW   互動式燃油管理、自動加油邏輯和動態重量模擬。 © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ja      インタラクティブな燃料管理、自動給油ロジック、および動的重量シミュレーション。 © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ko      대화형 연료 관리, 자동 연료 보급 논리 및 동적 중량 시뮬레이션. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:fr      Gestion interactive du carburant, logique de ravitaillement automatique et simulation dynamique du poids. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:de      Interaktives Kraftstoffmanagement, automatische Betankungslogik und dynamische Gewichtssimulation. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:es      Gestión interactiva de combustible, lógica de repostaje automático y simulación dinámica de peso. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:pt-BR   Gerenciamento interativo de combustível, lógica de reabastecimento automático e simulação dinâmica de peso. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:pt-PT   Gestão interativa de combustível, lógica de reabastecimento automático e simulação dinâmica de peso. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ru      Интерактивное управление топливом, логика автоматической дозаправки и динамическое моделирование веса. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ar      إدارة الوقود التفاعلية، ومنطق التزود بالوقود التلقائي، ومحاكاة الوزن الديناميكي. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:tr      Etkileşimli yakıt yönetimi, otomatik yakıt ikmali mantığı ve dinamik ağırlık simülasyonu. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:id      Manajemen bahan bakar interaktif, logika pengisian bahan bakar otomatis, dan simulasi bobot dinamis. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:th      การจัดการเชื้อเพลิงแบบโต้ตอบ ตรรกะการเติมเชื้อเพลิงอัตโนมัติ และการจำลองน้ำหนักแบบไดนามิก © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:pl      Interaktywne zarządzanie paliwem, logika automatycznego tankowania i dynamiczna symulacja masy. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:nl      Interactief brandstofbeheer, logica voor automatisch tanken en dynamische gewichtssimulatie. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:it      Gestione interattiva del carburante, logica di rifornimento automatico e simulazione dinamica del peso. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:sv      Interaktiv bränslehantering, logik för automatisk tankning och dynamisk viktsimulering. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:da      Interaktiv brændstofstyring, auto-tank logik og dynamisk vægtsimulering. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:fi      Interaktiivinen polttoaineen hallinta, automaattinen tankkauslogiikka ja dynaaminen painosimulaatio. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:nb      Interaktiv drivstoffstyring, logikk for automatisk drivstoff og dynamisk vektsimulering. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:cs      Interaktivní řízení paliva, logika automatického doplňování paliva a dynamická simulace hmotnosti. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:hu      Interaktív üzemanyag-kezelés, automatikus tankolási logika és dinamikus tömegszimuláció. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ro      Gestionarea interactivă a combustibilului, logica de alimentare automată și simularea dinamică a greutății. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:uk      Інтерактивне керування паливом, логіка автоматичної заправки та моделювання динамічної ваги. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:hi      इंटरएक्टिव ईंधन प्रबंधन, ऑटो-ईंधन तर्क और गतिशील वजन सिमुलेशन। © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:bn      ইন্টারেক্টিভ ফুয়েল ম্যানেজমেন্ট, অটো-রিফুয়েল লজিক এবং ডাইনামিক ওয়েট সিমুলেশন। © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:fa      مدیریت تعاملی سوخت، منطق سوخت‌گیری خودکار و شبیه‌سازی وزن پویا. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:he      ניהול דלק אינטראקטיבי, לוגיקה של תדלוק אוטומטי והדמיית משקל דינמית. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ms      Pengurusan bahan api interaktif, logik pengisi automatik dan simulasi berat dinamik. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:fil     Interactive na pamamahala ng gasolina, auto-refuel logic, at dynamic na weight simulation. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:el      Διαδραστική διαχείριση καυσίμου, λογική αυτόματης ανεφοδιασμού καυσίμου και δυναμική προσομοίωση βάρους. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:hr      Interaktivno upravljanje gorivom, logika automatskog punjenja goriva i dinamička simulacija težine. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:sk      Interaktívny manažment paliva, logika automatického dopĺňania paliva a dynamická simulácia hmotnosti. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:bg      Интерактивно управление на горивото, логика за автоматично зареждане с гориво и симулация на динамично тегло. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:sr      Интерактивно управљање горивом, логика аутоматског допуњавања горива и динамичка симулација тежине. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:lt      Interaktyvus degalų valdymas, automatinio degalų papildymo logika ir dinaminis svorio modeliavimas. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:lv      Interaktīva degvielas pārvaldība, automātiskās degvielas uzpildes loģika un dinamiska svara simulācija. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:et      Interaktiivne kütusehaldus, automaatse tankimise loogika ja dünaamiline kaalusimulatsioon. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:sl      Interaktivno upravljanje goriva, logika samodejnega točenja goriva in dinamična simulacija teže. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ca      Gestió interactiva del combustible, lògica de reabastament automàtic i simulació de pes dinàmica. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:af      Interaktiewe brandstofbestuur, outo-brandstof-logika en dinamiese gewigsimulasie. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:sw      Usimamizi shirikishi wa mafuta, mantiki ya kujaza mafuta kiotomatiki, na uigaji wa uzito unaobadilika. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:zu      Ukuphathwa kukaphethiloli okusebenzisanayo, i-auto-refuel logic, nokulingisa isisindo esiguqukayo. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:mn      Шатахууны интерактив удирдлага, автоматаар цэнэглэх логик, жингийн динамик загварчлал. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:my      အပြန်အလှန်အကျိုးပြုသောလောင်စာဆီစီမံခန့်ခွဲမှု၊ အလိုအလျောက်ဆီဖြည့်ခြင်းဆိုင်ရာ ယုတ္တိဗေဒနှင့် တက်ကြွသောအလေးချိန်တူခြင်း © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:km      ការគ្រប់គ្រងឥន្ធនៈអន្តរកម្ម តក្កវិជ្ជាចាក់ប្រេងដោយស្វ័យប្រវត្តិ និងការក្លែងធ្វើទម្ងន់ថាមវន្ត។ © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:lo      ການຈັດການນໍ້າມັນເຊື້ອໄຟແບບໂຕ້ຕອບ, ເຫດຜົນການເຕີມນໍ້າມັນອັດຕະໂນມັດ, ແລະການຈໍາລອງນ້ໍາຫນັກແບບເຄື່ອນໄຫວ. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
+// @description:ur      انٹرایکٹو فیول مینجمنٹ، آٹو ریفیول لاجک، اور ڈائنامک ویٹ سمولیشن۔ © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
 
 // @require             https://update.greasyfork.org/scripts/581510/code.js
 // @require             https://update.greasyfork.org/scripts/581511/code.js
@@ -114,11 +114,11 @@
 // @compatible          safari
 // @compatible          brave
 // @compatible          opera
-// @copyright           2026, _init (https://greasyfork.org/users/1594049)
+// @copyright           2026, AMFI-Disable (https://greasyfork.org/users/1594049)
 
 // @namespace           https://greasyfork.org/users/1594049
 // @version             2.0.1
-// @author              _init
+// @author              AMFI-Disable
 // @icon                https://geofs-assets.evengao6688.workers.dev/icons/fuel-simulator.png
 // @match               https://www.geo-fs.com/geofs.php*
 // @grant               none
