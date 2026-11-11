@@ -4,6 +4,34 @@ All notable changes, fuel burn calculations, and version releases for GeoFS-V3.9
 
 ---
 
+## [3.9.0] - Unified Metadata
+
+### Changed
+
+- Standardize the userscript metadata and version across the V3.9 ecosystem.
+- Match only the GeoFS main site and activate only when it reports V3.9.
+
+---
+
+## [Unreleased]
+
+### Changed
+
+- **HUD Tab Label**: Renamed registered HUD tab from `FUEL SIM` to `FUEL` for consistent layout.
+- **Theme Alignment**: Updated fuel gauge bars, sliders, and numerical readout accents to neutral styling (`#dddddd`).
+- **Favicon Metadata**: Switched userscript icon reference to the official GeoFS favicon.
+
+---
+
+## [2.0.7] - GeoFS V3.9 Compatibility
+
+### Changed
+
+- Start only after GeoFS reports V3.9; remain inactive on other or unrecognized versions.
+- Update compatibility documentation and version metadata.
+
+---
+
 ## [2.0.1] - Tank Imbalance Modeling And Dump Valve Logic
 
 ### Added

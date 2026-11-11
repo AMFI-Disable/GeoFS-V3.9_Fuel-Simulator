@@ -1,37 +1,24 @@
-# **GeoFS-V3.9**_Fuel-Simulator
+# GeoFS-V3.9_Fuel-Simulator
 
-![Version](https://img.shields.io/badge/Version-V2.0.1-3b82f6?style=flat-square&logo=git&logoColor=white)
-![Ecosystem](https://img.shields.io/badge/GeoFS--V3.9-Fuel_Simulator-10b981?style=flat-square&logo=shell&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Stable-10b981?style=flat-square&logo=lighthouse&logoColor=white)
+![Version](https://img.shields.io/badge/Version-v3.9.0-3b82f6?style=flat-square)
 
-The high-fidelity fuel management and consumption framework for **GeoFS-V3.9**. This module introduces realistic fuel-weight physics, consumption curves, and cross-feed logic for long-haul operations.
+Adds fuel consumption, aircraft mass, and refueling controls.
 
----
+## Features
 
-## ⚖️ Educational & Fair-Play Disclaimer
+- Use the **FUEL** tab in the shared HUD to view fuel, burn rate, and weight.
+- Configure dynamic consumption, tank behavior, and automatic refueling.
 
-> [!CAUTION]
-> **IMPORTANT NOTICE & DISCLAIMER**:
-> This codebase is provided strictly for educational, research, and testing purposes in authorized environments.
-> Using automated assistance or unauthorized scripts in violation of platform terms of service or anti-cheat policies may lead to account penalties.
-> The developers and contributors accept no responsibility or liability for misuse of this software.
+## Installation
 
----
+1. Install a userscript manager such as [Tampermonkey](https://www.tampermonkey.net/).
+2. Install or update the script from [Greasy Fork](https://greasyfork.org/en/scripts/581517-geofs-v3-9-fuel-simulator).
+3. Open or reload GeoFS V3.9. The script starts automatically.
 
-## ✨ Features
+The script activates only when GeoFS reports version V3.9 (including V3.9 patch releases). It waits for the version to become available and remains inactive on other versions. Most standalone scripts load the Core Library and Design System as dependencies; the userscript manager handles those dependencies.
 
-- **⛽ Realistic Consumption**: Fuel burn rate is calculated based on throttle position, engine type, and altitude (Dynamic SFC).
-- **⚖️ Center of Gravity Physics**: Fuel weight dynamically affects aircraft mass and can cause roll imbalances in Multi-Tank mode.
-- **🛢️ Multi-Tank Simulation**: Realistic sequential fuel draining (Center -> Wings) for complex flight management.
-- **⚖️ Gross Weight Display**: Live monitoring of total aircraft weight in KG directly on the HUD.
-- **🛠️ Ground Operations**: Integrated refueling system for pre-flight and turn-around procedures.
+The **GeoFS-V3.9_Ecosystem** panel shows startup status and notifications. Select × to dismiss it, or wait for it to disappear. A script listed as not detected is not necessarily uninstalled.
 
-## 🛠️ Installation
+## License
 
-### Standalone (Tampermonkey)
-
-1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension.
-2. Install the script via [**Greasy Fork**](https://greasyfork.org/en/scripts/581517-geofs-v3-9-fuel-simulator).
-3. Refresh GeoFS and the module will automatically initialize alongside the HUD.
-
-*© 2026 AMFI-Disable. Part of the [**GeoFS-V3.9**_Ecosystem](https://sites.google.com/view/geofs-v39-ecosystem/home).*
+[MIT](license) · © 2026 AMFI-Disable · [GeoFS-V3.9 Ecosystem](https://sites.google.com/view/geofs-v39-ecosystem/home)

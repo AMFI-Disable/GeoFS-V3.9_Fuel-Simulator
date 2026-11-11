@@ -50,7 +50,6 @@
 // @name:km             GeoFS-V3.9_ម៉ាស៊ីនពិសោធឥន្ធនៈ
 // @name:lo             GeoFS-V3.9_ເຄື່ອງຈຳລອງນໍ້າມັນເຊື້ອໄຟ
 // @name:ur             GeoFS-V3.9_ایندھن-سمیلیٹر
-
 // @description         Interactive fuel management, auto-refuel logic, and dynamic weight simulation. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
 // @description:vi      Quản lý nhiên liệu tương tác, logic tự động tiếp nhiên liệu và mô phỏng trọng lượng động. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
 // @description:zh-CN   交互式燃油管理、自动加油逻辑和动态重量模拟。 © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
@@ -103,46 +102,51 @@
 // @description:lo      ການຈັດການນໍ້າມັນເຊື້ອໄຟແບບໂຕ້ຕອບ, ເຫດຜົນການເຕີມນໍ້າມັນອັດຕະໂນມັດ, ແລະການຈໍາລອງນ້ໍາຫນັກແບບເຄື່ອນໄຫວ. © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
 // @description:ur      انٹرایکٹو فیول مینجمنٹ، آٹو ریفیول لاجک، اور ڈائنامک ویٹ سمولیشن۔ © 2026 AMFI-Disable. Part of the GeoFS-V3.9_Ecosystem.
 
+// @namespace           https://greasyfork.org/users/1594049
+// @version             3.9.0
+// @author              AMFI-Disable
+// @homepageURL         https://sites.google.com/view/geofs-v39-ecosystem/home
+// @icon                https://www.geo-fs.com/images/icons/favicon.ico
+// @match               https://www.geo-fs.com/geofs.php*
 // @require             https://update.greasyfork.org/scripts/581510/code.js
 // @require             https://update.greasyfork.org/scripts/581511/code.js
-
-// @homepageURL         https://sites.google.com/view/geofs-v39-ecosystem/home
-// @connect             greasyfork.org
+// @grant               none
+// @license             MIT
+// @copyright           2026, AMFI-Disable (https://greasyfork.org/users/1594049)
 // @compatible          chrome
 // @compatible          firefox
 // @compatible          edge
 // @compatible          safari
 // @compatible          brave
 // @compatible          opera
-// @copyright           2026, AMFI-Disable (https://greasyfork.org/users/1594049)
-
-// @namespace           https://greasyfork.org/users/1594049
-// @version             2.0.6
-// @author              AMFI-Disable
-// @icon                https://www.geo-fs.com/images/icons/favicon.ico
-// @match               https://www.geo-fs.com/geofs.php*
-// @grant               none
-// @license             MIT
-// @downloadURL https://update.greasyfork.org/scripts/581517/GeoFS-V39_Fuel-Simulator.user.js
-// @updateURL https://update.greasyfork.org/scripts/581517/GeoFS-V39_Fuel-Simulator.meta.js
 // ==/UserScript==
+
+// Wait for GeoFS to report its version before executing any module code.
+// Unknown, older, and newer versions never activate this V3.9 release.
+(function waitForGeoFSVersion() {
+    const version = window.geofs?.version;
+    if (version === undefined || version === null || version === '') {
+        setTimeout(waitForGeoFSVersion, 250);
+        return;
+    }
+    if (!/^(?:v)?3\.9(?:\.\d+)*$/i.test(String(version).trim())) {
+        console.warn('[GeoFS-V3.9_Fuel-Simulator] Inactive: GeoFS ' + version + ' is not V3.9.');
+        return;
+    }
+
 
 (() => {
     /**
      * Runtime Version Guard: GeoFS-V3.9 Suite Compatibility
-     * Ensures this module only executes on GeoFS v3.9 or earlier, and gracefully
-     * deactivates if GeoFS v4.0+ is detected.
+     * Allows this module to execute only when GeoFS reports version 3.9.
      */
     function isUnsupportedGeoFS() {
         const raw = window.geofs?.version;
-        if (raw === undefined || raw === null) return false;
-        const clean = typeof raw === 'string' ? raw.replace(/^[^\d.]*/, '') : raw;
-        const num = typeof clean === 'number' ? clean : parseFloat(clean);
-        return !isNaN(num) && num >= 4.0;
+        return !/^(?:v)?3\.9(?:\.\d+)*$/i.test(String(raw ?? '').trim());
     }
 
     if (isUnsupportedGeoFS()) {
-        console.warn("[GeoFS-V3.9_Fuel-Simulator] Inactive: GeoFS v" + window.geofs?.version + " detected (suite only supports GeoFS v3.9 and earlier).");
+        console.warn("[GeoFS-V3.9_Fuel-Simulator] Inactive: GeoFS v" + window.geofs?.version + " detected (suite only supports GeoFS v3.9).");
         return;
     }
 
@@ -551,7 +555,7 @@
 
     window.initFuelSimulatorPro = () => {
         if (isUnsupportedGeoFS()) {
-            console.warn("[GeoFS-V3.9_Fuel-Simulator] Inactive: GeoFS v" + window.geofs?.version + " detected (suite only supports GeoFS v3.9 and earlier).");
+            console.warn("[GeoFS-V3.9_Fuel-Simulator] Inactive: GeoFS v" + window.geofs?.version + " detected (suite only supports GeoFS v3.9).");
             return;
         }
         if (window.fuelSimulatorTabRegistered) return;
@@ -574,4 +578,6 @@
             }
         }, 100);
     }
+})();
+
 })();
