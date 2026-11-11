@@ -117,9 +117,9 @@
 // @copyright           2026, AMFI-Disable (https://greasyfork.org/users/1594049)
 
 // @namespace           https://greasyfork.org/users/1594049
-// @version             2.0.1
+// @version             2.0.6
 // @author              AMFI-Disable
-// @icon                https://geofs-assets.evengao6688.workers.dev/icons/fuel-simulator.png
+// @icon                https://www.geo-fs.com/images/icons/favicon.ico
 // @match               https://www.geo-fs.com/geofs.php*
 // @grant               none
 // @license             MIT
@@ -324,37 +324,37 @@
         createUI: function() {
             console.log("[GeoFS-V3.9_Fuel-Simulator] >> Registering UI Tab...");
             const content = `
-                <div style="display: flex; flex-direction: column; gap: 12px; padding: 10px; background: rgba(10, 15, 20, 0.4); border-radius: 8px;">
+                <div style="display: flex; flex-direction: column; gap: 12px; padding: 10px; background: transparent;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <div style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; border-left: 3px solid #ff9f05;">
-                            <div style="font-size: 9px; color: #aaa; text-transform: uppercase;">Fuel Quantity</div>
-                            <div id="fuel-pct-val" style="font-size: 16px; font-weight: bold; color: #fff;">...</div>
+                        <div style="padding: 2px;">
+                            <div style="font-size: 10px; color: #aaa; text-transform: uppercase;">Fuel Quantity</div>
+                            <div id="fuel-pct-val" style="font-size: 18px; font-weight: bold; color: #fff;">...</div>
                         </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; border-left: 3px solid #ff9f05;">
-                            <div style="font-size: 9px; color: #aaa; text-transform: uppercase;">Burn Rate</div>
-                            <div id="fuel-burn-val" style="font-size: 16px; font-weight: bold; color: #fff;">...</div>
+                        <div style="padding: 2px;">
+                            <div style="font-size: 10px; color: #aaa; text-transform: uppercase;">Burn Rate</div>
+                            <div id="fuel-burn-val" style="font-size: 12px; font-weight: bold; color: #fff;">...</div>
                         </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; border-left: 3px solid #facc15; grid-column: span 2;">
-                            <div style="font-size: 9px; color: #aaa; text-transform: uppercase;">Gross Weight</div>
-                            <div id="fuel-weight-val" style="font-size: 16px; font-weight: bold; color: #fff;">...</div>
+                        <div style="padding: 2px; grid-column: span 2;">
+                            <div style="font-size: 10px; color: #aaa; text-transform: uppercase;">Gross Weight</div>
+                            <div id="fuel-weight-val" style="font-size: 12px; font-weight: bold; color: #fff;">...</div>
                         </div>
                     </div>
-                    <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 6px;">
+                    <div style="padding: 2px;">
                         <input type="range" id="fuel-slider-pro" min="0" max="100" step="1" value="100" 
                             style="width: 100%;" oninput="window.fuelSimulatorSuite.setFuel(this.value)">
-                        <div style="display: flex; justify-content: space-between; font-size: 9px; color: #aaa; margin-top: 4px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 4px;">
                             <span>SET FUEL</span><span id="fuel-slider-label">100%</span>
                         </div>
                     </div>
                     <div style="display: flex; gap: 6px;">
                         <button id="fuel-btn-dyn" onclick="window.fuelSimulatorSuite.toggleDynamicSFC()" 
-                            style="flex: 1; padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 9px; cursor: pointer; border-radius: 4px;">DYN SFC</button>
+                            style="flex: 1; padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 10px; cursor: pointer; border-radius: 4px;">DYN SFC</button>
                         <button id="fuel-btn-tanks" onclick="window.fuelSimulatorSuite.toggleRealisticTanks()" 
-                            style="flex: 1; padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 9px; cursor: pointer; border-radius: 4px;">REAL TANKS</button>
+                            style="flex: 1; padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 10px; cursor: pointer; border-radius: 4px;">REAL TANKS</button>
                     </div>
                     <button id="fuel-btn-auto" onclick="window.fuelSimulatorSuite.toggleAutoRefuel()" 
                         style="padding: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 10px; cursor: pointer; border-radius: 4px;">AUTO-REFUEL</button>
-                    <div id="fuel-status-msg" style="font-size: 8px; color: #ff9f05; text-align: center; opacity: 0.6;">WAITING FOR AIRCRAFT...</div>
+                    <div id="fuel-status-msg" style="font-size: 10px; color: #dddddd; text-align: center; opacity: 0.6;">WAITING FOR AIRCRAFT...</div>
                 </div>
             `;
             window.registerHUDTab('fuel', 'FUEL', content, false);
@@ -366,7 +366,7 @@
                 const btnAuto = document.getElementById('fuel-btn-auto');
                 if (btnDyn) btnDyn.style.background = this.state.dynamicSFC ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)";
                 if (btnTanks) btnTanks.style.background = this.state.realisticTanks ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)";
-                if (btnAuto) btnAuto.style.background = this.state.autoRefuel ? "rgba(255,159,5,0.15)" : "rgba(255,255,255,0.05)";
+                if (btnAuto) btnAuto.style.background = this.state.autoRefuel ? "rgba(76,175,80,0.5)" : "rgba(255,255,255,0.05)";
             }, 100);
             
             if (!window._fuelTickInterval) {
@@ -416,7 +416,7 @@
             this.state.autoRefuel = !this.state.autoRefuel;
             localStorage.setItem('geofs-V39-fuel-auto', this.state.autoRefuel);
             const btn = document.getElementById('fuel-btn-auto');
-            if (btn) btn.style.background = this.state.autoRefuel ? "rgba(255,159,5,0.15)" : "rgba(255,255,255,0.05)";
+            if (btn) btn.style.background = this.state.autoRefuel ? "rgba(76,175,80,0.5)" : "rgba(255,255,255,0.05)";
             this.notify(`Auto-Refuel ${this.state.autoRefuel ? 'ON' : 'OFF'}`);
         },
 
